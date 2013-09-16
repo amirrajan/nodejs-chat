@@ -1,6 +1,6 @@
 {
   "name": "nodejs-chat",
-  "version": "0.0.4-19",
+  "version": "0.0.4-21",
   "description": "Chat app using nodejs and socket.io",
   "main": "server.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "dependencies": {
     "express": "~3.0.1",
     "ejs": "~0.8.3",
-    "socket.io": "~0.9.11"
+    "socket.io": "~0.9.11",
+    "underscore": "~1.5.2"
   },
   "subdomain": "amirrajan-nodejs-chat",
   "engines": {
