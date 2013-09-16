@@ -56,6 +56,10 @@
           return $("<div></div>").html(s).html();
         }
 
+        function searchUrlFor(name) {
+          return 'https://www.google.com/search?q=' + encodeURIComponent(name) + '%20site:wikipedia.org&btnI=3564';
+        }
+
         var name = getName();
 
         $("#data").attr('placeholder', 'send message as ' + name);
@@ -77,8 +81,19 @@
         socket.on('updateusers', function(data) {
           $('#users').empty();
           $.each(data, function(key, value) {
-            $('#users').append('<div><a href="https://www.google.com/search?q=' + encodeURIComponent(key) + '%20site:wikipedia.org&btnI=3564" target="_blank">' + key + '</div>');
+            $('#users').append('<div><a href="' + searchUrlFor(key) + '" target="_blank">' + key + '</div>');
           });
+        });
+
+        socket.on('servernotification', function (data) {
+          var searchUrl = searchUrlFor(data.username);
+          if(data.connected) {
+            if(data.to_self) data.username = "you";
+
+            $('#conversation').append('connected: <a href="' + searchUrl + '" target="_blank">' + escaped(data.username) + "</a><br/>");
+          } else {
+            $('#conversation').append('disconnected: <a href="' + searchUrl + '" target="_blank">' + escaped(data.username) + "</a><br/>");
+          }
         });
 
         // on load of page
