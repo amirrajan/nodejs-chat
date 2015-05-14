@@ -14,6 +14,12 @@ Run the app:
 
 Then navigate to `http://localhost:3000`
 
+##Run on Gitdeploy
+
+Click the button to see this app live in action:
+
+[![Deploy nodejs-chat via gitdeploy.io](https://img.shields.io/badge/gitdeploy.io-deploy%20nodejs--chat/master-green.svg)](https://www.gitdeploy.io/deploy?repository=https%3A%2F%2Fgithub.com%2Famirrajan%2Fnodejs-chat.git)
+
 ##Signing up, and deploying to Nodejitsu
 
 ###Documentation
