@@ -6,7 +6,7 @@ var app = express();
 var server = http.createServer(app);
 var io = socketio.listen(server);
 var nodes = { };
-var usernames = {};
+var usernames = { };
 
 server.listen(process.env.PORT || 3000);
 
