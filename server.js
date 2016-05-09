@@ -1,29 +1,29 @@
-var express = require('express');
-var _ = require('underscore');
+import express from 'express';
+import http from 'http';
+import socketio from 'socket.io';
+
 var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+var server = http.createServer(app);
+var io = socketio.listen(server);
 var nodes = { };
-var usernames = {};
+var usernames = { };
+
 server.listen(process.env.PORT || 3000);
 
 app.set('view engine', 'ejs');
 app.set('view options', { layout: false });
-app.use(express.methodOverride());
-app.use(express.bodyParser());  
-app.use(app.router);
 app.use('/public', express.static('public'));
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.render('index');
 });
 
-io.sockets.on('connection', function(socket) {
-	socket.on('sendchat', function (data) {
+io.sockets.on('connection', socket => {
+	socket.on('sendchat', data => {
 		io.sockets.emit('updatechat', socket.username, data);
 	});
 
-	socket.on('adduser', function(username) {
+	socket.on('adduser', username => {
 		socket.username = username;
 
 		usernames[username] = username;
@@ -35,8 +35,7 @@ io.sockets.on('connection', function(socket) {
 		io.sockets.emit('updateusers', usernames);
 	});
 
-	// when the user disconnects.. perform this
-	socket.on('disconnect', function(){
+	socket.on('disconnect', () => {
 
 		delete usernames[socket.username];
 

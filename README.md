@@ -10,7 +10,7 @@ Install all the dependencies:
 
 Run the app:
 
-    node server.js
+    nodemon start.js
 
 Then navigate to `http://localhost:3000`
 
