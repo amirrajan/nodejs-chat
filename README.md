@@ -10,7 +10,7 @@ Install all the dependencies:
 
 Run the app:
 
-    node server.js
+    node start.js
 
 Consider using the package `nodemon` if you'd like. It'll auto start your server
 every time you save.
